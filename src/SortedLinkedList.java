@@ -4,7 +4,7 @@ public class SortedLinkedList {
     private NodeType currentPos;
 
     public SortedLinkedList() {
-        head = new NodeType();
+        head = null;
         currentPos = head;
     }
 
@@ -21,40 +21,38 @@ public class SortedLinkedList {
     }
 
     public void insertItem(ItemType item) {
-        try {
-            if (item.compareTo(head.info) == -1) {
+        if (head == null) {
+            head = new NodeType();
+            head.info = item;
+        } else if (item.compareTo(head.info) == -1) {
                 NodeType temp = new NodeType();
                 temp.info = item;
                 temp.next = head;
                 head = temp;
-            }
-        } catch (NullPointerException npe) {
-            head.info = item;
-        }
-        if (head.next == null) {
+        } else if (head.next == null) {
             NodeType temp = new NodeType();
             temp.info = item;
             head.next = temp;
-        }
+        } else {
+            NodeType temp = head;
+            while (temp.next != null) {
+                switch (item.compareTo(temp.next.info)) {
+                    case -1:                         
+                        NodeType newNode = new NodeType();
+                       newNode.info = item;
+                        newNode.next = temp.next;
+                        temp.next = newNode;
+                        break;
 
-        NodeType temp = head;
-        while (temp.next != null) {
-            switch (item.compareTo(temp.next.info)) {
-                case -1:                         
-                    NodeType newNode = new NodeType();
-                    newNode.info = item;
-                    newNode.next = temp.next;
-                    temp.next = newNode;
-                    break;
+                   case 1:
+                        temp = temp.next;
+                        break;
 
-                case 1:
-                    temp = temp.next;
-                    break;
-
-                default:
-                    System.out.println("Sorry. You cannot insert the duplicate item");
-                    temp.next = null;
-                    break;
+                   default:
+                        System.out.println("Sorry. You cannot insert the duplicate item");
+                         temp.next = null;
+                        break;
+                }
             }
         }  
     }
