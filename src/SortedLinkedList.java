@@ -12,7 +12,7 @@ public class SortedLinkedList {
         NodeType temp = head;
         int count = 0;
 
-        while (temp.next != null) {
+        while (temp != null) {
             count++;
             temp = temp.next;
         }
@@ -29,19 +29,25 @@ public class SortedLinkedList {
                 temp.info = item;
                 temp.next = head;
                 head = temp;
-        } else if (head.next == null) {
-            NodeType temp = new NodeType();
-            temp.info = item;
-            head.next = temp;
+        } else if (item.compareTo(head.info) == 0) {
+            System.out.println("Sorry. You cannot insert the duplicate item");
         } else {
             NodeType temp = head;
-            while (temp.next != null) {
-                switch (item.compareTo(temp.next.info)) {
+            boolean moreToSearch = true;
+            while (moreToSearch) {
+                if (temp.next == null) {
+                    NodeType newNode = new NodeType();
+                    newNode.info = item;
+                    temp.next = newNode;
+                    moreToSearch = false;
+                } else {
+                    switch (item.compareTo(temp.next.info)) {
                     case -1:                         
                         NodeType newNode = new NodeType();
                         newNode.info = item;
                         newNode.next = temp.next;
                         temp.next = newNode;
+                        moreToSearch = false;
                         break;
 
                    case 1:
@@ -50,8 +56,9 @@ public class SortedLinkedList {
 
                    default:
                         System.out.println("Sorry. You cannot insert the duplicate item");
-                        temp.next = null;
+                        moreToSearch = false;
                         break;
+                   }
                 }
             }
         }  
@@ -89,18 +96,16 @@ public class SortedLinkedList {
         while (temp.next != null) {
             if (item.compareTo(temp.info) == 0) {
                 return index;
-            } else if (item.compareTo(temp.info) == -1) {
+            } else if (item.compareTo(temp.info) == 1) {
                 temp = temp.next;
                 index++;
             } else {
-                System.out.println("The end of the list had been reached");
                 return -1;
             }
         }
         if (item.compareTo(temp.info) == 0) {
             return index;
         } else {
-            System.out.println("The end of the list had been reached");
             return -1;
         }
     }
@@ -158,8 +163,9 @@ public class SortedLinkedList {
         System.out.print("Intersection:");
         temp = printList.head;
         while (temp != null) {
-            System.out.println(" " + temp.info);
+            System.out.print(" " + temp.info);
             temp = temp.next;
         }
+        System.out.println();
     }
 }

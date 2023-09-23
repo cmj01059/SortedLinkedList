@@ -9,7 +9,9 @@ public class LinkedListDriver {
         try {
                 Scanner fileReader = new Scanner(input);
                 while (fileReader.hasNextInt()) {
-                    list.insertItem(new ItemType(fileReader.nextInt()));
+                    int item = fileReader.nextInt();
+                    System.out.println(item);
+                    list.insertItem(new ItemType(item));
                 }
             fileReader.close();
         } catch (FileNotFoundException fnfe) {
@@ -41,6 +43,7 @@ public class LinkedListDriver {
             switch (userInput) {
                 case "p":
                     System.out.print("The list is: ");
+                    list.resetList();
                     for (int count = 0; count < list.getLength(); count++) {
                         System.out.print(list.getNextItem() + " ");
                     }
@@ -55,12 +58,14 @@ public class LinkedListDriver {
                     System.out.print("Enter a number to insert: ");
                     int insertNum = keyboard.nextInt();
                     System.out.print("Original list : ");
+                    list.resetList();
                     for (int count = 0; count < list.getLength(); count++) {
                         System.out.print(list.getNextItem() + " ");
                     }
                     System.out.println();
                     list.insertItem(new ItemType(insertNum));
                     System.out.print("New List : ");
+                    list.resetList();
                     for (int count = 0; count < list.getLength(); count++) {
                         System.out.print(list.getNextItem() + " ");
                     }
@@ -71,12 +76,14 @@ public class LinkedListDriver {
                     System.out.print("Enter a number to delete: ");
                     int delNum = keyboard.nextInt();
                     System.out.print("Original list : ");
+                    list.resetList();
                     for (int count = 0; count < list.getLength(); count++) {
                         System.out.print(list.getNextItem() + " ");
                     }
                     System.out.println();
                     list.deleteItem(new ItemType(delNum));
                     System.out.print("New List : ");
+                    list.resetList();
                     for (int count = 0; count < list.getLength(); count++) {
                         System.out.print(list.getNextItem() + " ");
                     }
@@ -87,6 +94,7 @@ public class LinkedListDriver {
                     System.out.print("Enter a number to search: ");
                     int searchNum = keyboard.nextInt();
                     System.out.print("Original list : ");
+                    list.resetList();
                     for (int count = 0; count < list.getLength(); count++) {
                         System.out.print(list.getNextItem() + " ");
                     }
@@ -110,12 +118,14 @@ public class LinkedListDriver {
 
                 case "a":
                     System.out.print("Original list : ");
+                    list.resetList();
                     for (int count = 0; count < list.getLength(); count++) {
                         System.out.print(list.getNextItem() + " ");
                     }
                     System.out.println();
                     list.deleteAlternateNodes();
                     System.out.print("New List : ");
+                    list.resetList();
                     for (int count = 0; count < list.getLength(); count++) {
                         System.out.print(list.getNextItem() + " ");
                     }
@@ -131,15 +141,19 @@ public class LinkedListDriver {
                         newList.insertItem(new ItemType(keyboard.nextInt()));
                     }
                     System.out.print("list 1 : ");
+                    list.resetList();
                     for (int count = 0; count < list.getLength(); count++) {
                         System.out.print(list.getNextItem() + " ");
                     }
+                    System.out.println();
                     System.out.print("list 2 : ");
+                    newList.resetList();
                     for (int count = 0; count < newList.getLength(); count++) {
                         System.out.print(newList.getNextItem() + " ");
                     }
                     SortedLinkedList mergeList = list.mergeList(newList);
                     System.out.print("Merged list : ");
+                    mergeList.resetList();
                     for (int count = 0; count < mergeList.getLength(); count++) {
                         System.out.print(mergeList.getNextItem() + " ");
                     }
@@ -154,13 +168,17 @@ public class LinkedListDriver {
                         newList2.insertItem(new ItemType(keyboard.nextInt()));
                     }
                     System.out.print("list 1 : ");
+                    list.resetList();
                     for (int count = 0; count < list.getLength(); count++) {
                         System.out.print(list.getNextItem() + " ");
                     }
+                    System.out.println();
                     System.out.print("list 2 : ");
+                    newList2.resetList();
                     for (int count = 0; count < newList2.getLength(); count++) {
                         System.out.print(newList2.getNextItem() + " ");
                     }
+                    System.out.println();
                     list.intersection(newList2);
                     break;
 

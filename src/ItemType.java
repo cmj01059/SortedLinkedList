@@ -7,9 +7,9 @@ public class ItemType {
     }
 
     public int compareTo(ItemType item) {
-        if (item.getValue() > value)
+        if (value < item.getValue())
             return -1;
-        else if (item.getValue() < value)
+        else if (value > item.getValue())
             return 1;
         else
             return 0;
