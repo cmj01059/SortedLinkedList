@@ -13,6 +13,7 @@ public class LinkedListDriver {
             int tempVal = 0;
             while (tempVal != -1) {
                 tempVal = inputReader.read();
+                System.out.println(tempVal);
                 if (tempVal != -1) {
                     list.insertItem(new ItemType(tempVal));
                 }
