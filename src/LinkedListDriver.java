@@ -8,7 +8,7 @@ public class LinkedListDriver {
         SortedLinkedList list = new SortedLinkedList();
         try {
                 Scanner fileReader = new Scanner(input);
-                while (fileReader.hasNext()) {
+                while (fileReader.hasNextInt()) {
                     list.insertItem(new ItemType(fileReader.nextInt()));
                 }
             fileReader.close();
