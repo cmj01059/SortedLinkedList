@@ -39,7 +39,7 @@ public class SortedLinkedList {
                 switch (item.compareTo(temp.next.info)) {
                     case -1:                         
                         NodeType newNode = new NodeType();
-                       newNode.info = item;
+                        newNode.info = item;
                         newNode.next = temp.next;
                         temp.next = newNode;
                         break;
@@ -50,7 +50,7 @@ public class SortedLinkedList {
 
                    default:
                         System.out.println("Sorry. You cannot insert the duplicate item");
-                         temp.next = null;
+                        temp.next = null;
                         break;
                 }
             }
