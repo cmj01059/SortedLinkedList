@@ -114,6 +114,7 @@ public class SortedLinkedList {
         } else if (currentPos == null) {
             currentPos = head;
             returnItem = currentPos.info;
+            currentPos = currentPos.next;
         } else {
             returnItem = currentPos.info;
             currentPos = currentPos.next;
