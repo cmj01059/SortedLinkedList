@@ -1,7 +1,5 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.Scanner;
 
 public class LinkedListDriver {
@@ -9,22 +7,13 @@ public class LinkedListDriver {
         File input = new File(args[0]);
         SortedLinkedList list = new SortedLinkedList();
         try {
-            FileReader inputReader = new FileReader(input);
-            int tempVal = 0;
-            while (tempVal != -1) {
-                tempVal = inputReader.read();
-                System.out.println(tempVal);
-                if (tempVal != -1) {
-                    list.insertItem(new ItemType(tempVal));
+                Scanner fileReader = new Scanner(input);
+                while (fileReader.hasNext()) {
+                    list.insertItem(new ItemType(fileReader.nextInt()));
                 }
-            }
-            inputReader.close();
+            fileReader.close();
         } catch (FileNotFoundException fnfe) {
-            System.out.println("File not found:" + fnfe);
-            System.exit(0);
-        } catch (IOException ioe) {
-            System.out.println("File not found:" + ioe);
-            System.exit(0);
+            System.out.println("File not found.");
         }
 
         System.out.println("Commands:");
