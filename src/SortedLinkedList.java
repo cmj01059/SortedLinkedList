@@ -53,6 +53,7 @@ public class SortedLinkedList {
 
                 default:
                     System.out.println("Sorry. You cannot insert the duplicate item");
+                    temp.next = null;
                     break;
             }
         }  
